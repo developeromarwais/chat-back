@@ -23,12 +23,16 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('messages', 'MessageController@store');
 
     Route::get('users', 'UserController@index');
+    Route::post('pusher/auth', 'UserController@pusherAuth');
+    Route::post('pusher/auth/chat', 'UserController@pusherAuthChat');
 });
 
 
 //register
 Route::post('register', 'Auth\RegisterController@register');
 //login
-Route::post('login', 'Auth\LoginController@login');
+// Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'UserController@login');
+
 //logout 
 Route::middleware('auth:api')->post('logout', 'Auth\LoginController@logout');

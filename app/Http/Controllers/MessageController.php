@@ -28,7 +28,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $message = Message::create($request->all());
-        event(new SendMessage($request->content));
+        event(new SendMessage($request->content, $request->receiver_id));
         return response()->json($message, 201);
     }
 }
